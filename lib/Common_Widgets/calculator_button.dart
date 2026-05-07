@@ -4,6 +4,7 @@ class CalculatorButton extends StatelessWidget {
   final String buttonText;
   final Color buttonColor;
   final Color textColor;
+  final double? width;
   final VoidCallback onPressed;
 
   const CalculatorButton({
@@ -12,22 +13,24 @@ class CalculatorButton extends StatelessWidget {
     required this.buttonColor,
     required this.textColor,
     required this.onPressed,
+    this.width,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bool isZero = buttonText == '0';
     final double height = 64;
-    final double width = isZero ? 156 : 72;
+    final double buttonWidth = width ?? 72;
 
     return SizedBox(
-      width: width,
+      width: buttonWidth,
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
-          shape: isZero ? StadiumBorder() : CircleBorder(),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
           padding: EdgeInsets.zero,
         ),
         child: Center(

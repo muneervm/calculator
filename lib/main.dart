@@ -1,4 +1,4 @@
-import 'package:calculator/Screens/calculator_screen.dart';
+import 'package:calculator/Screens/splach_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:calculator/Providers/calculator_provider.dart';
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Calculator',
         theme: ThemeData.dark(),
-        home: CalculatorScreen(),
+        home: SplashScreen(),
       ),
     );
   }

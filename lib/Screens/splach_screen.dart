@@ -1,4 +1,5 @@
 import 'package:calculator/Common_Widgets/screen_resolution.dart';
+import 'package:calculator/Screens/calculator_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,6 +28,15 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     _controller.repeat(reverse: true);
+
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const CalculatorScreen()),
+        );
+      }
+    });
   }
 
   @override

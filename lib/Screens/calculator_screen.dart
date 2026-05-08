@@ -9,34 +9,33 @@ class CalculatorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF3A4663), // Modern dark blue background
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 30),
+            SizedBox(height: 40),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: _buildDisplay(),
             ),
-            SizedBox(height: 50),
-            Expanded(
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Container(
-                padding: EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                  top: 15,
-                  bottom: 10,
-                ),
+                height: 430,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                 decoration: BoxDecoration(
-                  color: Color(0xFF242D44), // Keypad container background
+                  color: Color(0xFF242D44),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
                   ),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    SizedBox(height: 8),
+
                     _buildButtonRow(
                       context,
                       ['7', '8', '9', 'AC'],
@@ -44,10 +43,11 @@ class CalculatorScreen extends StatelessWidget {
                         Colors.grey[850]!,
                         Colors.grey[850]!,
                         Colors.grey[850]!,
-                        Colors.blueGrey[600]!,
+                        Colors.blueGrey[800]!,
                       ],
                       [Colors.white, Colors.white, Colors.white, Colors.white],
                     ),
+                    SizedBox(height: 8),
                     _buildButtonRow(
                       context,
                       ['4', '5', '6', '+'],
@@ -55,10 +55,12 @@ class CalculatorScreen extends StatelessWidget {
                         Colors.grey[850]!,
                         Colors.grey[850]!,
                         Colors.grey[850]!,
-                        Colors.amber[700]!,
+                        Colors.blue[700]!,
                       ],
                       [Colors.white, Colors.white, Colors.white, Colors.white],
                     ),
+                    SizedBox(height: 8),
+
                     _buildButtonRow(
                       context,
                       ['1', '2', '3', '-'],
@@ -66,21 +68,25 @@ class CalculatorScreen extends StatelessWidget {
                         Colors.grey[850]!,
                         Colors.grey[850]!,
                         Colors.grey[850]!,
-                        Colors.amber[700]!,
+                        Colors.blue[700]!,
                       ],
                       [Colors.white, Colors.white, Colors.white, Colors.white],
                     ),
+                    SizedBox(height: 8),
+
                     _buildButtonRow(
                       context,
                       ['.', '0', '/', 'x'],
                       [
                         Colors.grey[850]!,
                         Colors.grey[850]!,
-                        Colors.amber[700]!,
-                        Colors.amber[700]!,
+                        Colors.blue[700]!,
+                        Colors.blue[700]!,
                       ],
                       [Colors.white, Colors.white, Colors.white, Colors.white],
                     ),
+                    SizedBox(height: 8),
+
                     _buildBottomRow(context),
                   ],
                 ),
@@ -97,7 +103,7 @@ class CalculatorScreen extends StatelessWidget {
       builder: (context, provider, child) {
         return Container(
           width: double.infinity,
-          height: 180,
+          height: 200,
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 15),
           decoration: BoxDecoration(
             color: Colors.white,
@@ -150,14 +156,15 @@ class CalculatorScreen extends StatelessWidget {
     List<Color> textColors,
   ) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(texts.length, (index) {
-        return CalculatorButton(
-          buttonText: texts[index],
-          buttonColor: colors[index],
-          textColor: textColors[index],
-          onPressed: () =>
-              context.read<CalculatorProvider>().calculate(texts[index]),
+        return Expanded(
+          child: CalculatorButton(
+            buttonText: texts[index],
+            buttonColor: colors[index],
+            textColor: textColors[index],
+            onPressed: () =>
+                context.read<CalculatorProvider>().calculate(texts[index]),
+          ),
         );
       }),
     );
@@ -165,21 +172,22 @@ class CalculatorScreen extends StatelessWidget {
 
   Widget _buildBottomRow(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        CalculatorButton(
-          buttonText: 'RESET',
-          buttonColor: Color(0xFF647299),
-          textColor: Colors.white,
-          width: 150,
-          onPressed: () => context.read<CalculatorProvider>().calculate('AC'),
+        Expanded(
+          child: CalculatorButton(
+            buttonText: 'RESET',
+            buttonColor: Colors.blueGrey[800]!,
+            textColor: Colors.white,
+            onPressed: () => context.read<CalculatorProvider>().calculate('AC'),
+          ),
         ),
-        CalculatorButton(
-          buttonText: '=',
-          buttonColor: Color(0xFFD13F30),
-          textColor: Colors.white,
-          width: 150,
-          onPressed: () => context.read<CalculatorProvider>().calculate('='),
+        Expanded(
+          child: CalculatorButton(
+            buttonText: '=',
+            buttonColor: Colors.red,
+            textColor: Colors.white,
+            onPressed: () => context.read<CalculatorProvider>().calculate('='),
+          ),
         ),
       ],
     );

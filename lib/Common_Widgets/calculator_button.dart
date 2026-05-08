@@ -18,25 +18,32 @@ class CalculatorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double height = 64;
-    final double buttonWidth = width ?? 72;
+    final double height = 70;
 
     return SizedBox(
-      width: buttonWidth,
+      width: width,
       height: height,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: buttonColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: buttonColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            elevation: 4,
+            padding: EdgeInsets.zero,
           ),
-          padding: EdgeInsets.zero,
-        ),
-        child: Center(
-          child: Text(
-            buttonText,
-            style: TextStyle(fontSize: 24, color: textColor),
+          child: Center(
+            child: Text(
+              buttonText,
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color: textColor,
+              ),
+            ),
           ),
         ),
       ),
